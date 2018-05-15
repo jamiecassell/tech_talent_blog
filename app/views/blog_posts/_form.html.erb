@@ -1,4 +1,4 @@
-<%= form_with(model: @blog_post, local: true) do |forma| %>
+<%= form_with(model: @blog_post, local: true) do |form| %>
 	<% if @blog_post.errors.any? %>
 		<h2><%= pluralize(@blog_post.errors.count, "error") %> prohibited this Blog Post from being saved:
 		</h2> 
@@ -14,12 +14,12 @@
 		<%= form.text_field :title, class: "form-control", placeholder: "Blog Title..." %>
 	</div>
 
-	<div class="form-group">
-		<%= form.text_field :author, class: "form-control", placeholder: "Your name here..." %>
-	</div>
+	
+		<%= form.hidden_field :user_id, value: current_user.id %>
+	
 
 	<div class="form-group">
-		<%= form.text_area :blog_entry, class: "form-control" rows: 12, placeholder: "Tell us something..." %>
+		<%= form.text_area :blog_entry, class: "form-control", rows: 12, placeholder: "Tell us something..." %>
 	</div>
 
 	<div class="actions">
